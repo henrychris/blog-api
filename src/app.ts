@@ -2,7 +2,7 @@ import * as mongoose from "mongoose";
 import express, { type Request, type Response } from "express";
 import indexRouter from "./routes/indexRouter";
 import articleRouter from "./routes/articleRouter";
-import { getEnvVariable } from "./util/envUitl";
+import { getEnvVariable } from "./util/envUtil";
 
 // setup constants
 const PORT = getEnvVariable("PORT");
