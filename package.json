@@ -1,0 +1,14 @@
+{
+  "name": "blog-api",
+  "module": "src/app.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "start": "bun run src/app.ts"
+  }
+}
