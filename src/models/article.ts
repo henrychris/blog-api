@@ -4,9 +4,9 @@ const articleSchema = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
     content: { type: String, required: true },
-    datePublished: { type: Date, default: Date.UTC },
-    isDeleted: Boolean,
-    tags: [String],
+    datePublished: { type: Date, default: () => new Date() },
+    isDeleted: { type: Boolean, default: false },
+    tags: { type: [String], default: [] },
 });
 
 export type Article = InferSchemaType<typeof articleSchema>;
