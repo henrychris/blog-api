@@ -3,7 +3,9 @@
   "module": "src/app.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/morgan": "^1.9.9",
+    "morgan": "^1.10.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

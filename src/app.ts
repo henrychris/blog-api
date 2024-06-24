@@ -3,6 +3,7 @@ import express, { type Request, type Response } from "express";
 import indexRouter from "./routes/indexRouter";
 import articleRouter from "./routes/articleRouter";
 import { getEnvVariable } from "./util/envUtil";
+import morgan from "morgan";
 
 // setup constants
 const PORT = getEnvVariable("PORT");
@@ -13,6 +14,7 @@ const app = express();
 
 // setup middleware
 app.use(express.json());
+app.use(morgan(":method :url :status :response-time ms"));
 app.use(indexRouter);
 app.use(apiPrefix, articleRouter);
 
