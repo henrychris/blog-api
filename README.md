@@ -1,40 +1,66 @@
-# blog-api
+
+# Blog API
 
 ## Requirements
 
-- Bun
+- Node.js (using Bun)
 - Docker
-- You need to add two values to the env file: PORT & MONGO_URL
+
+### Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+- `PORT`: Port number for the server (e.g., 3000)
+- `MONGO_URL`: MongoDB connection URL
+
+Example `.env` file:
+
+```env
+PORT=3000
+MONGO_URL=mongodb://localhost:27017/myblogdb
+```
 
 ## Setup
 
-MongoDb:
+### MongoDB
 
-Pull the image:
+Pull the MongoDB Docker image:
 
-`docker pull mongodb/mongodb-community-server:latest`
+```bash
+docker pull mongodb/mongodb-community-server:latest
+```
 
-Run a container:
+Run a MongoDB container:
 
-`docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest`
+```bash
+docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
+```
 
-To install dependencies:
+### Install Dependencies
+
+Install project dependencies using Bun:
 
 ```bash
 bun install
 ```
 
-To run:
+### Run the Server
+
+Start the server using Bun:
 
 ```bash
 bun dev
 ```
 
-This project was created using `bun init` in bun v1.1.16. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+This project was scaffolded using `bun init` in Bun v1.1.16. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
 
 ## Routes
 
-POST /api/articles - create an article
+### POST /api/articles
+
+Create a new article.
+
+Request body:
 
 ```json
 {
@@ -45,22 +71,26 @@ POST /api/articles - create an article
 }
 ```
 
-GET /api/articles -  Get all articles
+### GET /api/articles
 
-Request:
+Get all articles.
+
+Response:
 
 ```json
 [
- {
-   "title": "Lorem Ipsum #2",
-   "author": "",
-   "content": "",
-   "tags": [ "" ]
- }
+  {
+    "title": "Lorem Ipsum #2",
+    "author": "",
+    "content": "",
+    "tags": [ "" ]
+  }
 ]
 ```
 
-GET /api/articles/:articleId - Get a single article with its id
+### GET /api/articles/:articleId
+
+Get a single article by its ID.
 
 Response:
 
@@ -75,9 +105,11 @@ Response:
 }
 ```
 
-PUT /api/articles:articleId - update an article
+### PUT /api/articles/:articleId
 
-Request:
+Update an existing article.
+
+Request body:
 
 ```json
 {
@@ -88,6 +120,8 @@ Request:
 }
 ```
 
-DELETE /api/articles/:articleId - Delete an article
+### DELETE /api/articles/:articleId
 
-Response: *nothing here lol*
+Delete an article by its ID.
+
+Response: *No content returned.*
