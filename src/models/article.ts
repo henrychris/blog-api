@@ -9,5 +9,10 @@ const articleSchema = new Schema({
     tags: { type: [String], default: [] },
 });
 
+export type CreateArticleRequest = Pick<
+    Article,
+    "author" | "title" | "content" | "tags"
+>;
+
 export type Article = InferSchemaType<typeof articleSchema>;
 export const ArticleModel = model("Article", articleSchema);
