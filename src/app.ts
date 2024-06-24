@@ -2,18 +2,23 @@ import * as mongoose from "mongoose";
 import express, { type Request, type Response } from "express";
 import indexRouter from "./routes/indexRouter";
 import articleRouter from "./routes/articleRouter";
+import { getEnvVariable } from "./util/envUitl";
 
-const PORT = process.env.PORT || 3000;
+// setup constants
+const PORT = getEnvVariable("PORT");
+const MONGO_URL = getEnvVariable("MONGO_URL");
 const apiPrefix = "/api";
 
 const app = express();
+
+// setup middleware
 app.use(express.json());
 app.use(indexRouter);
 app.use(apiPrefix, articleRouter);
 
 // mongoose setup
 mongoose
-    .connect("mongodb://localhost:27017/basic-blog-api")
+    .connect(MONGO_URL)
     .then(() => console.log("Connected to mongoose."))
     .catch((err) => console.error("Could not connect to mongoose", err));
 
