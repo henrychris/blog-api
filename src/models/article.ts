@@ -18,7 +18,7 @@ export interface ArticleDTO {
     tags: string[];
 }
 
-export type CreateArticleRequest = Pick<
+export type ArticleRequestDto = Pick<
     Article,
     "author" | "title" | "content" | "tags"
 >;

@@ -1,10 +1,10 @@
 import { type Request, type Response } from "express";
-import { ArticleModel, type CreateArticleRequest } from "../models/article";
+import { ArticleModel, type ArticleRequestDto } from "../models/article";
 import { toArticleDTO } from "../mappers/article.mapper";
 
 export const createArticle = async (req: Request, res: Response) => {
     try {
-        const articleReq = req.body as CreateArticleRequest;
+        const articleReq = req.body as ArticleRequestDto;
         const article = await ArticleModel.create({
             title: articleReq.title,
             author: articleReq.author,
