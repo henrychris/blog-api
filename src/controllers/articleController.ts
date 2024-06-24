@@ -88,3 +88,29 @@ export const updateArticle = async (req: Request, res: Response) => {
         res.status(500).send({ error: "Failed to update article." });
     }
 };
+
+export const deleteArticle = async (req: Request, res: Response) => {
+    try {
+        const articleId: string = req.params.articleId;
+        if (!articleId) {
+            console.error("The article id was not provided in the request.");
+            res.status(422).send("The article id is required.");
+            return;
+        }
+
+        const article = await ArticleModel.findById(articleId);
+        if (!article) {
+            console.error(`No article found for id: ${articleId}.`);
+            res.status(404).send("There is no article with that id.");
+            return;
+        }
+
+        await article.deleteOne();
+
+        console.log(`Deleted article with id: ${articleId}.`);
+        res.sendStatus(204);
+    } catch (error) {
+        console.error(`Something went wrong. Error: ${error}.`);
+        res.status(500).send({ error: "Failed to delete article." });
+    }
+};
