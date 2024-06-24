@@ -10,5 +10,9 @@
   },
   "scripts": {
     "start": "bun run src/app.ts"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.4.3"
   }
 }
