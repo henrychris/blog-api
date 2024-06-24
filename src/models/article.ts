@@ -1,4 +1,4 @@
-import { Schema, type InferSchemaType, model } from "mongoose";
+import { Schema, type InferSchemaType, model, Document } from "mongoose";
 
 const articleSchema = new Schema({
     title: { type: String, required: true },
@@ -9,10 +9,27 @@ const articleSchema = new Schema({
     tags: { type: [String], default: [] },
 });
 
+export interface ArticleDTO {
+    id: string;
+    title: string;
+    author: string;
+    content: string;
+    datePublished: Date;
+    tags: string[];
+}
+
 export type CreateArticleRequest = Pick<
     Article,
     "author" | "title" | "content" | "tags"
 >;
 
-export type Article = InferSchemaType<typeof articleSchema>;
+export interface Article extends Document {
+    title: string;
+    author: string;
+    content: string;
+    datePublished: Date;
+    isDeleted: boolean;
+    tags: string[];
+}
+
 export const ArticleModel = model("Article", articleSchema);
