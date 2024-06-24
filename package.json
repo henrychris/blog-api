@@ -1,18 +1,21 @@
 {
-  "name": "blog-api",
-  "module": "src/app.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "scripts": {
-    "start": "bun run src/app.ts"
-  },
-  "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^8.4.3"
-  }
+    "name": "blog-api",
+    "module": "src/app.ts",
+    "type": "module",
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "start": "bun run src/app.ts",
+        "dev": "bun run src/app.ts --watch"
+    },
+    "dependencies": {
+        "@types/express": "^4.17.21",
+        "@types/mongoose": "^5.11.97",
+        "express": "^4.19.2",
+        "mongoose": "^8.4.3"
+    }
 }
