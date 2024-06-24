@@ -3,7 +3,7 @@
 
 ## Requirements
 
-- Node.js (using Bun)
+- Bun
 - Docker
 
 ### Environment Variables
