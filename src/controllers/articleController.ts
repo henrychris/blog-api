@@ -54,6 +54,37 @@ export const getSingleArticle = async (req: Request, res: Response) => {
         return;
     } catch (error) {
         console.error(`Something went wrong. Error: ${error}.`);
-        res.status(500).send({ error: "Failed to fetch articles." });
+        res.status(500).send({ error: "Failed to fetch article." });
+    }
+};
+
+export const updateArticle = async (req: Request, res: Response) => {
+    try {
+        const articleReq = req.body as ArticleRequestDto;
+        const articleId: string = req.params.articleId;
+        if (!articleId) {
+            console.error("The article id was not provided in the request.");
+            res.status(422).send("The article id is required.");
+            return;
+        }
+
+        const article = await ArticleModel.findById(articleId);
+        if (!article) {
+            console.error(`No article found for id: ${articleId}.`);
+            res.status(404).send("There is no article with that id.");
+            return;
+        }
+
+        article.title = articleReq.title;
+        article.author = articleReq.author;
+        article.content = articleReq.content;
+        article.tags = articleReq.tags;
+        article.save();
+
+        console.log(`Updated article with id: ${articleId}.`);
+        res.send(204);
+    } catch (error) {
+        console.error(`Something went wrong. Error: ${error}.`);
+        res.status(500).send({ error: "Failed to update article." });
     }
 };
